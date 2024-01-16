@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterControllerA : MonoBehaviour
 {
     [SerializeField] float speed = 5, jumpHeight = 2, sensitivity = 20, sprintScalar = 2;
 
