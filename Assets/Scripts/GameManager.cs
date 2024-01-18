@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] GameObject titleUI, pauseUI;
     [SerializeField] TMP_Text scoreUI, livesUI;
+    [SerializeField] Slider healthUI;
+
+    [SerializeField] FloatVariable health;
+    //[Header("Events")]
+    //[SerializeField] IntEvent scoreEvent;
 
     public enum State
     {
@@ -32,7 +38,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        
+        //scoreEvent.onEventRaised += OnAddPoints;
     }
 
     void Update()
@@ -50,6 +56,7 @@ public class GameManager : Singleton<GameManager>
             case State.NEW_GAME:
                 titleUI.SetActive(false);
                 Lives = 3;
+                health.value = 100;
                 state = State.PLAY;
                 break;
             case State.PLAY:
@@ -59,6 +66,8 @@ public class GameManager : Singleton<GameManager>
             case State.OVER:
                 break;
         }
+
+        healthUI.value = health.value / 100.0f;
     }
 
     public void OnTitle()
@@ -84,6 +93,11 @@ public class GameManager : Singleton<GameManager>
     public void OnOver()
     {
         state = State.OVER;
+    }
+
+    public void OnAddPoints(int points)
+    {
+        print(points);
     }
 }
 

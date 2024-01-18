@@ -7,6 +7,7 @@ public class OrbitObject : MonoBehaviour
     [SerializeField] GameObject target = null;
     [SerializeField] [Range(1, 100)] float distance = 5, sensitivity = 0.2f;
     [SerializeField] [Range(20, 90)] float defaultPitch = 40;
+    [SerializeField] [Range(-180, 180)] float cameraDownMax, cameraUpMax;
 
     float yaw = 0, pitch = 0;
 
@@ -20,6 +21,8 @@ public class OrbitObject : MonoBehaviour
     {
         yaw += Input.GetAxis("Mouse X") * sensitivity;
         pitch += Input.GetAxis("Mouse Y") * sensitivity;
+
+        pitch = Mathf.Clamp(pitch, cameraDownMax, cameraUpMax);
 
         Quaternion qYaw = Quaternion.AngleAxis(yaw, Vector3.up);
         Quaternion qPitch = Quaternion.AngleAxis(pitch, Vector3.right);
