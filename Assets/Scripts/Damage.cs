@@ -1,25 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Damage : MonoBehaviour
+public class Die : MonoBehaviour
 {
-    [SerializeField] float damage = 5;
-    [SerializeField] bool constDam = false;
+    [SerializeField] bool isTrigger = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!constDam && other.gameObject.TryGetComponent<Player>(out Player player))
+        if (isTrigger && other.gameObject.TryGetComponent<Player>(out Player player))
         {
-            player.Damage(damage);
+            player.OnDeath();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (constDam && other.gameObject.TryGetComponent<Player>(out Player player))
+        if (!isTrigger && other.gameObject.TryGetComponent<Player>(out Player player))
         {
-            player.Damage(damage * Time.deltaTime);
+            player.OnDeath();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

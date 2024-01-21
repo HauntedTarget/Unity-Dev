@@ -6,22 +6,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] TMP_Text pickupOutput = null;
-    [SerializeField] FloatVariable health;
-    [Header("Events")]
-    [SerializeField] IntEvent scoreEvent = default;
-
-    private int score = 0;
 
     public int Score { 
-        get { return score; }
-        set { score = value; 
-              pickupOutput.text = "Score: " + score.ToString(); 
-              scoreEvent.RaiseEvent(score); } 
+        get { return GameObject.Find("GameManager").GetComponent<GameManager>().score; }
+        set
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().score = value;
+            pickupOutput.text = "Score: " + GameObject.Find("GameManager").GetComponent<GameManager>().score.ToString();
+        }
     }
 
     private void Start()
     {
-        health.value = 5.5f;
+
     }
 
     public void AddPoints(int points)
@@ -29,9 +26,10 @@ public class Player : MonoBehaviour
         Score += points;
     }
 
-    public void Damage(float damage)
+    public bool OnDeath()
     {
-        if (health.value > 0) health.value -= damage;
-        if (health.value < 0) health.value = 0;
+
+        GameObject.Find("GameManager").GetComponent<GameManager>().lives -= 1;
+        return true;
     }
 }

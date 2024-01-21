@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 2716836998883479585}
   - component: {fileID: 2624029676622308778}
   - component: {fileID: 1671286164955698358}
+  - component: {fileID: 5509237174625996354}
   - component: {fileID: 8304738848075086476}
   - component: {fileID: 4937034021310526026}
   - component: {fileID: 2113722823310563337}
   - component: {fileID: 1052351185720956801}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5509237174625996354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749883879724961351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 060dc84a90c18fe4ca29d9f87de228ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupOutput: {fileID: 0}
 --- !u!114 &8304738848075086476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +116,7 @@ MonoBehaviour:
   view: {fileID: 0}
   maxForce: 5
   jumpForce: 5
-  rayLength: 1
+  rayLength: 0.6
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

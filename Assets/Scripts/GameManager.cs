@@ -6,19 +6,17 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] GameObject titleUI, pauseUI;
-    [SerializeField] TMP_Text scoreUI, livesUI;
-    [SerializeField] Slider healthUI;
+    [SerializeField] GameObject titleUI;
+    [SerializeField] TMP_Text livesUI;
+    [SerializeField] TMP_Text startButtonText;
 
-    [SerializeField] FloatVariable health;
     //[Header("Events")]
     //[SerializeField] IntEvent scoreEvent;
 
     public enum State
     {
         TITLE,
-        SETTINGS,
-        NEW_GAME,
+        PAUSE,
         PLAY,
         OVER
     }
@@ -26,19 +24,14 @@ public class GameManager : Singleton<GameManager>
     public State state = State.TITLE;
     //public float timer = 0;
     // Format to 2 decimal places -> string.Format("{0:F1", floatVariable);
-    public int lives = 0, deaths = 0;
+    public int lives = 3;
+    public int score = 0;
 
-    public int Lives 
-    { 
-        get { return lives; } 
-        set { lives = value; livesUI.text = "Lives: " + lives; } 
-    }
-
-    public bool pause = false;
+    public bool pause = true;
 
     void Start()
     {
-        //scoreEvent.onEventRaised += OnAddPoints;
+
     }
 
     void Update()
@@ -47,19 +40,13 @@ public class GameManager : Singleton<GameManager>
         {
             case State.TITLE:
                 titleUI.SetActive(true);
+                pause = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
-            case State.SETTINGS:
-                titleUI.SetActive(false);
-                break;
-            case State.NEW_GAME:
-                titleUI.SetActive(false);
-                Lives = 3;
-                health.value = 100;
-                state = State.PLAY;
-                break;
             case State.PLAY:
+                titleUI.SetActive(false);
+                pause = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 break;
@@ -67,27 +54,19 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
 
-        healthUI.value = health.value / 100.0f;
-    }
-
-    public void OnTitle()
-    {
-        state = State.PLAY;
+        livesUI.text = "Lives: " + lives.ToString();
     }
 
     public void OnStartGame()
     {
-        state = State.NEW_GAME;
-    }
-
-    public void OnSettings()
-    {
-        state = State.SETTINGS;
+        startButtonText.text = "Continue";
+        state = State.PLAY;
     }
 
     public void OnPause()
     {
-
+        startButtonText.text = "Continue";
+        state = State.TITLE;
     }
 
     public void OnOver()
@@ -95,9 +74,10 @@ public class GameManager : Singleton<GameManager>
         state = State.OVER;
     }
 
-    public void OnAddPoints(int points)
+    public void OnQuit()
     {
-        print(points);
+        Debug.Log("QuittingApplication");
+        Application.Quit();
     }
 }
 

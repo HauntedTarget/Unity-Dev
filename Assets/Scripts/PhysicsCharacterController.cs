@@ -24,18 +24,32 @@ public class PhysicsCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = Vector3.zero;
-
-        direction.x = Input.GetAxis("Horizontal");
-        direction.z = Input.GetAxis("Vertical");
-
-        Quaternion yRotation = Quaternion.AngleAxis(view.transform.rotation.eulerAngles.y, Vector3.up);
-        force = yRotation * direction * maxForce;
-
-        Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.blue);
-        if (Input.GetButtonDown("Jump") && CheckGround())
+        if (!GameObject.Find("GameManager").GetComponent<GameManager>().pause)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            Vector3 direction = Vector3.zero;
+
+            direction.x = Input.GetAxis("Horizontal");
+            direction.z = Input.GetAxis("Vertical");
+
+            Quaternion yRotation = Quaternion.AngleAxis(view.transform.rotation.eulerAngles.y, Vector3.up);
+            force = yRotation * direction * maxForce;
+
+            Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.blue);
+            if (Input.GetButtonDown("Jump") && CheckGround())
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            if (Input.GetButtonDown("Cancel"))
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager>().OnPause();
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("Cancel"))
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager>().OnStartGame();
+            }
         }
     }
 
