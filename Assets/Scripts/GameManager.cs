@@ -55,20 +55,18 @@ public class GameManager : Singleton<GameManager>
 
                 if (!GameObject.Find("GameSong").GetComponent<AudioSource>().isPlaying) GameObject.Find("GameSong").GetComponent<AudioSource>().Play();
 
-                if (lives <= 0) state = State.OVER;
+                if (lives <= 0) OnOver();
 
-                if (GameObject.FindGameObjectsWithTag("Gem").Length <= 0) state = State.WIN;
+                if (GameObject.FindGameObjectsWithTag("Gem").Length <= 0) OnWin();
 
                 break;
             case State.OVER:
                 Debug.Log("LOSE");
                 GameObject.Find("GameSong").GetComponent<AudioSource>().Pause();
-                SceneManager.LoadScene("Lose");
                 break;
             case State.WIN:
                 Debug.Log("Win");
                 GameObject.Find("GameSong").GetComponent<AudioSource>().Pause();
-                SceneManager.LoadScene("Win");
                 break;
         }
 
@@ -95,6 +93,7 @@ public class GameManager : Singleton<GameManager>
 
     public void OnOver()
     {
+        SceneManager.LoadScene("Lose");
         state = State.OVER;
     }
 
@@ -102,6 +101,12 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("QuittingApplication");
         Application.Quit();
+    }
+
+    public void OnWin()
+    {
+        SceneManager.LoadScene("Win");
+        state = State.WIN;
     }
 }
 
