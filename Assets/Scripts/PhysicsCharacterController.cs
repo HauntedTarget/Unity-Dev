@@ -46,6 +46,8 @@ public class PhysicsCharacterController : MonoBehaviour
         }
         else
         {
+            rb.isKinematic = true;
+            rb.isKinematic = false;
             if (Input.GetButtonDown("Cancel"))
             {
                 GameObject.Find("GameManager").GetComponent<GameManager>().OnStartGame();

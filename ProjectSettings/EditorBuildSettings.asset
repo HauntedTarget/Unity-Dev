@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Ball Roller/Title.unity
+    guid: 70cbd60f5c2579b40921b3d33060c006
+  - enabled: 1
+    path: Assets/Scenes/Ball Roller/Win.unity
+    guid: 81593aab6f2e0fb49ad598cb9abb3a47
+  - enabled: 1
+    path: Assets/Scenes/Ball Roller/Lose.unity
+    guid: fee7cff236217d04ea92d0b230589a48
   m_configObjects: {}

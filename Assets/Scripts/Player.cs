@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] TMP_Text pickupOutput = null;
 
     public int Score { 
         get { return GameObject.Find("GameManager").GetComponent<GameManager>().score; }
         set
         {
             GameObject.Find("GameManager").GetComponent<GameManager>().score = value;
-            pickupOutput.text = "Score: " + GameObject.Find("GameManager").GetComponent<GameManager>().score.ToString();
         }
     }
 

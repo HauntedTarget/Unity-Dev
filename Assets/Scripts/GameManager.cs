@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] GameObject titleUI;
-    [SerializeField] TMP_Text livesUI;
+    [SerializeField] TMP_Text livesUI, scoreUI;
     [SerializeField] TMP_Text startButtonText;
 
     //[Header("Events")]
@@ -18,7 +19,8 @@ public class GameManager : Singleton<GameManager>
         TITLE,
         PAUSE,
         PLAY,
-        OVER
+        OVER,
+        WIN
     }
 
     public State state = State.TITLE;
@@ -31,7 +33,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-
+        GameObject.Find("GameSong").GetComponent<AudioSource>().Pause();
     }
 
     void Update()
@@ -43,18 +45,40 @@ public class GameManager : Singleton<GameManager>
                 pause = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                GameObject.Find("GameSong").GetComponent<AudioSource>().Pause();
                 break;
             case State.PLAY:
                 titleUI.SetActive(false);
                 pause = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+
+                if (!GameObject.Find("GameSong").GetComponent<AudioSource>().isPlaying) GameObject.Find("GameSong").GetComponent<AudioSource>().Play();
+
+                if (lives <= 0) state = State.OVER;
+
+                if (GameObject.FindGameObjectsWithTag("Gem").Length <= 0) state = State.WIN;
+
                 break;
             case State.OVER:
+                Debug.Log("LOSE");
+                GameObject.Find("GameSong").GetComponent<AudioSource>().Pause();
+                SceneManager.LoadScene("Lose");
+                break;
+            case State.WIN:
+                Debug.Log("Win");
+                GameObject.Find("GameSong").GetComponent<AudioSource>().Pause();
+                SceneManager.LoadScene("Win");
                 break;
         }
 
         livesUI.text = "Lives: " + lives.ToString();
+        scoreUI.text = "Score: " + score.ToString();
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        score = 0;
     }
 
     public void OnStartGame()
