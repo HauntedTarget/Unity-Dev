@@ -7,7 +7,7 @@ using UnityEngine.Splines;
 public class SplineFollower : MonoBehaviour
 {
     [SerializeField] SplineContainer splineContainer;
-    [SerializeField] [Range(0, 2)] public float movementRate = 1;
+    [SerializeField] [Range(-2, 2)] public float movementRate = 1;
 
     float tDistance = 0; // distance along spline
 
