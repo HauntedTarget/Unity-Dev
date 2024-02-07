@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ball Roller/Lose.unity
     guid: fee7cff236217d04ea92d0b230589a48
+  - enabled: 1
+    path: Assets/Scenes/SpaceGame/SpaceGameThing.unity
+    guid: 29232bd6e7c79404e8dce2e78457b2d7
   m_configObjects: {}

@@ -4,26 +4,14 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
-public class SplineFollower : MonoBehaviour
+public class SplineRandY : SplineFollower
 {
-    [SerializeField] public SplineContainer splineContainer;
-    [SerializeField] [Range(-5, 5)] public float movementRate = 1;
 
-    [SerializeField] [Range(0, 1)] public float tDistance = 0; // distance along spline
-
-    //Length in world coordnates
-    public float length { get { return splineContainer.CalculateLength(); } }
-
-    //World coordnate distance
-    public float distance
-    {
-        get { return tDistance * length; }
-        set { tDistance = value / length; }
-    }
+    private float randY;
 
     void Start()
     {
-
+        randY = UnityEngine.Random.Range(-3.0f, 3.0f);
     }
 
     void Update()
@@ -40,7 +28,7 @@ public class SplineFollower : MonoBehaviour
             foreward = Vector3.Normalize(splineContainer.EvaluateTangent(t)), 
             right = Vector3.Cross(up, foreward);
 
-        transform.position = position;
+        transform.position = position + (up * randY);
         transform.rotation = quaternion.LookRotation(right, up);
     }
 }

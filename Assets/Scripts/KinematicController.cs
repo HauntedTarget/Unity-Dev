@@ -5,6 +5,7 @@ using UnityEngine;
 public class KinematicController : MonoBehaviour, IDamagable
 {
     [SerializeField, Range(0, 40)] float speed = 1;
+    [SerializeField] float xClamp = 1, yClamp = 1;
     public float health = 100;
 
     void Update()
@@ -17,6 +18,21 @@ public class KinematicController : MonoBehaviour, IDamagable
         Vector3 force = direction * speed * Time.deltaTime;
 
         transform.localPosition += force;
+
+        float horizClamp = Mathf.Clamp(transform.localPosition.x, xClamp * -1, xClamp);
+        float vertiClamp = Mathf.Clamp(transform.localPosition.y, yClamp * -1, yClamp);
+
+        transform.localPosition = new(horizClamp, vertiClamp, transform.localPosition.z);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().OnPause();
+        }
+
+        if (health <= 0)
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().OnOver();
+        }
     }
 
     public void ApplyDamage(float damage)

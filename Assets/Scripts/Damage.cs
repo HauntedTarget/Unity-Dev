@@ -6,11 +6,19 @@ public class Damage : MonoBehaviour
 {
 	[SerializeField] float damage = 1;
 	[SerializeField] bool oneTime = true;
+	[SerializeField] AudioClip hitNoise = null;
+	[SerializeField] AudioSource soundSorce = null;
 
-	private void OnTriggerEnter(Collider other)
+    private void Start()
+    {
+		if (soundSorce == null) soundSorce = GameObject.Find("playerShipObject").GetComponent<AudioSource>();
+    }
+
+    private void OnTriggerEnter(Collider other)
 	{
 		if (oneTime && other.gameObject.TryGetComponent<IDamagable>(out IDamagable damagable))
 		{
+			soundSorce.PlayOneShot(hitNoise);
 			damagable.ApplyDamage(damage);
 		}
 	}
@@ -19,6 +27,7 @@ public class Damage : MonoBehaviour
 	{
 		if (!oneTime && other.gameObject.TryGetComponent<IDamagable>(out IDamagable damagable))
 		{
+			soundSorce.PlayOneShot(hitNoise);
 			damagable.ApplyDamage(damage * Time.deltaTime);
 		}
 	}

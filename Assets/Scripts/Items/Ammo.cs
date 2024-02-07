@@ -26,4 +26,9 @@ public abstract class Ammo : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
+
+	public float GetDamage()
+    {
+		return ammoData.damage;
+    }
 }
