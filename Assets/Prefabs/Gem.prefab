@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 554698724638308490}
   - component: {fileID: 2511449065831634128}
   - component: {fileID: -2094905610894241883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gem
   m_TagString: Gem
   m_Icon: {fileID: 0}

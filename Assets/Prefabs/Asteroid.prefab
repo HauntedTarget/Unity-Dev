@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 945623346249068506}
   - component: {fileID: 8022751383936277409}
   - component: {fileID: 7610603104231123685}
+  - component: {fileID: 1135477928130309851}
   - component: {fileID: 138751535294080198}
   - component: {fileID: -6511040519034601843}
   - component: {fileID: 1240351903952978888}
@@ -88,6 +89,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1135477928130309851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51357916799993310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce9e4aef3209b64b9f951fd155636de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &138751535294080198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splineContainer: {fileID: 0}
-  movementRate: -5
+  movementRate: 10
   tDistance: 0
 --- !u!114 &1240351903952978888
 MonoBehaviour:
@@ -130,6 +143,7 @@ MonoBehaviour:
   damage: 10
   oneTime: 1
   hitNoise: {fileID: 8300000, guid: e6ae562b1b64e8f4c9be4bb7297f8fbf, type: 3}
+  soundSorce: {fileID: 0}
 --- !u!114 &-7862447645938149573
 MonoBehaviour:
   m_ObjectHideFlags: 0

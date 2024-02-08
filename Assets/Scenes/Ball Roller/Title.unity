@@ -2827,15 +2827,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Boss Health: 100'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f277ebec58fd6b4aaaa1d923bcca73b, type: 2}
-  m_sharedMaterial: {fileID: 4693524867673581861, guid: 4f277ebec58fd6b4aaaa1d923bcca73b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dfc932ed736f14440aedfe85f4c6dde6, type: 2}
+  m_sharedMaterial: {fileID: 5262096098355646757, guid: dfc932ed736f14440aedfe85f4c6dde6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3429,8 +3429,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Ship Health: 100'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f277ebec58fd6b4aaaa1d923bcca73b, type: 2}
-  m_sharedMaterial: {fileID: 4693524867673581861, guid: 4f277ebec58fd6b4aaaa1d923bcca73b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dfc932ed736f14440aedfe85f4c6dde6, type: 2}
+  m_sharedMaterial: {fileID: 5262096098355646757, guid: dfc932ed736f14440aedfe85f4c6dde6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -7,6 +7,12 @@ public class KinematicController : MonoBehaviour, IDamagable
     [SerializeField, Range(0, 40)] float speed = 1;
     [SerializeField] float xClamp = 1, yClamp = 1;
     public float health = 100;
+    float MAX_HEALTH;
+
+    private void Start()
+    {
+        MAX_HEALTH = health;
+    }
 
     void Update()
     {
@@ -38,5 +44,11 @@ public class KinematicController : MonoBehaviour, IDamagable
     public void ApplyDamage(float damage)
     {
         health -= damage;
+    }
+
+    public void HealHealth(float healing)
+    {
+        health += healing;
+        if (health > MAX_HEALTH + 20) { health = MAX_HEALTH + 20; }
     }
 }

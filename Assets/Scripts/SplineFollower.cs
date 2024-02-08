@@ -6,8 +6,8 @@ using UnityEngine.Splines;
 
 public class SplineFollower : MonoBehaviour
 {
-    [SerializeField] public SplineContainer splineContainer;
-    [SerializeField] [Range(-5, 5)] public float movementRate = 1;
+    [SerializeField] public SplineContainer splineContainer = null;
+    [SerializeField] [Range(-50, 50)] public float movementRate = 1;
 
     [SerializeField] [Range(0, 1)] public float tDistance = 0; // distance along spline
 
@@ -28,9 +28,13 @@ public class SplineFollower : MonoBehaviour
 
     void Update()
     {
-        distance += movementRate * Time.deltaTime;
+        if (splineContainer != null)
+        {
+            distance += movementRate * Time.deltaTime;
 
-        UpdateTransform(math.frac(tDistance));
+            UpdateTransform(math.frac(tDistance));
+        }
+        else Debug.Log("No Spline On Object: " + gameObject.name);
     }
 
     void UpdateTransform(float t)
